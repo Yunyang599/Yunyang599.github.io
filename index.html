@@ -7,14 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
-    /* =============================================
-       GLOBAL — edit colors/fonts here
-    ============================================= */
     :root {
       --bg: #0e0f11;
       --surface: #16181c;
       --border: #2a2d33;
-      --accent: #c8f040;       /* ← change this to change highlight color */
+      --accent: #c8f040;
       --text-primary: #eeecea;
       --text-secondary: #8a8d94;
       --text-muted: #4e5158;
@@ -25,9 +22,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font-sans);
       background: var(--bg);
@@ -35,23 +30,10 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-
     a { color: inherit; text-decoration: none; }
 
-    /* =============================================
-       LAYOUT
-    ============================================= */
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    section {
-      padding: 5rem 0;
-      border-top: 1px solid var(--border);
-    }
-
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; border-top: 1px solid var(--border); }
     .section-label {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -61,354 +43,171 @@
       margin-bottom: 2.5rem;
     }
 
-    /* =============================================
-       NAV
-    ============================================= */
+    /* NAV */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
       background: rgba(14, 15, 17, 0.88);
       backdrop-filter: blur(12px);
     }
-
     .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
     }
-
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      color: var(--text-secondary);
-      transition: color 0.2s;
-    }
-
+    .nav-logo { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-secondary); transition: color 0.2s; }
     .nav-links a:hover { color: var(--text-primary); }
 
-    /* =============================================
-       HERO
-    ============================================= */
-    #hero {
-      border-top: none;
-      padding: 7rem 0 5rem;
-    }
-
+    /* HERO */
+    #hero { border-top: none; padding: 7rem 0 5rem; }
     .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
-      padding: 4px 12px;
-      border-radius: 99px;
-      margin-bottom: 2rem;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);
+      border: 1px solid var(--border); padding: 4px 12px; border-radius: 99px; margin-bottom: 2rem;
     }
-
     .hero-tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); display: inline-block;
     }
-
-    h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .hero-desc {
-      max-width: 520px;
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
+    h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .hero-desc { max-width: 520px; color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2.5rem; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      padding: 10px 20px;
-      border-radius: var(--radius);
-      transition: all 0.2s;
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; padding: 10px 20px;
+      border-radius: var(--radius); transition: all 0.2s; cursor: pointer;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0e0f11;
-      border: 1px solid var(--accent);
-    }
-
+    .btn-primary { background: var(--accent); color: #0e0f11; border: 1px solid var(--accent); }
     .btn-primary:hover { opacity: 0.85; }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
-
+    .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
     .btn-secondary:hover { border-color: var(--text-secondary); }
 
-    /* =============================================
-       SKILLS
-    ============================================= */
+    /* SKILLS */
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
     }
-
-    .skill-group {
-      background: var(--surface);
-      padding: 1.4rem 1.5rem;
-    }
-
+    .skill-group { background: var(--surface); padding: 1.4rem 1.5rem; }
     .skill-group-title {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
+      font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.75rem;
     }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.05);
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border-radius: 4px;
+      background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--border);
     }
 
-    /* =============================================
-       PROJECTS
-    ============================================= */
+    /* PROJECTS */
     .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+      display: flex; flex-direction: column; gap: 1px;
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
     }
-
-    .project-card {
-      background: var(--surface);
+    .project-card { background: var(--surface); }
+    .project-header {
       padding: 2rem;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 1rem;
       align-items: start;
+      cursor: pointer;
       transition: background 0.2s;
-      cursor: default;
     }
-
-    .project-card:hover { background: #1c1f25; }
-
-    .project-num {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .project-title {
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
+    .project-header:hover { background: #1c1f25; }
+    .project-num { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .project-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
     .project-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 1rem;
+      font-size: 0.9rem; color: var(--text-secondary);
+      max-width: 560px; line-height: 1.7; margin-bottom: 1rem;
     }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .project-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
+      font-family: var(--font-mono); font-size: 10px; padding: 2px 8px;
+      border-radius: 4px; border: 1px solid var(--border); color: var(--text-muted);
     }
-
-    .project-arrow {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-      transition: color 0.2s, transform 0.2s;
+    .project-toggle {
+      font-size: 1.2rem; color: var(--text-muted); margin-top: 2px;
+      transition: color 0.2s, transform 0.3s; user-select: none;
+      width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 6px; flex-shrink: 0;
     }
+    .project-header:hover .project-toggle { color: var(--accent); border-color: var(--accent); }
+    .project-card.open .project-toggle { transform: rotate(45deg); color: var(--accent); border-color: var(--accent); }
 
-    .project-card:hover .project-arrow {
-      color: var(--accent);
-      transform: translate(2px, -2px);
-    }
+    /* EXPANDED DETAIL */
+    .project-detail { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .project-card.open .project-detail { max-height: 1200px; border-top: 1px solid var(--border); }
+    .project-detail-inner { padding: 2rem; }
 
-    /* =============================================
-       ABOUT
-    ============================================= */
-    .about-grid {
+    /* Image gallery */
+    .project-gallery {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .project-gallery img {
+      width: 100%; border-radius: 8px; border: 1px solid var(--border);
+      object-fit: cover; aspect-ratio: 4/3; background: var(--bg);
     }
 
-    @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    /* Key stats */
+    .project-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem; }
+    .stat {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.75rem 1rem; min-width: 120px;
     }
+    .stat-value { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 500; color: var(--accent); display: block; }
+    .stat-label { font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px; }
 
-    .about-text {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.8;
+    /* Detail bullets */
+    .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .project-bullets li {
+      font-size: 0.88rem; color: var(--text-secondary);
+      line-height: 1.7; padding-left: 1rem; position: relative;
     }
+    .project-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
 
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-text { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; }
     .about-text p + p { margin-top: 1rem; }
-
-    .about-text a {
-      color: var(--accent);
-      border-bottom: 1px solid rgba(200,240,64,0.3);
-    }
-
-    .contact-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .about-text a { color: var(--accent); border-bottom: 1px solid rgba(200,240,64,0.3); }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; }
     .contact-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      width: 60px;
-      flex-shrink: 0;
+      font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--text-muted); width: 60px; flex-shrink: 0;
     }
-
-    .contact-value {
-      font-size: 13px;
-      color: var(--text-secondary);
-      transition: color 0.2s;
-    }
-
+    .contact-value { font-size: 13px; color: var(--text-secondary); transition: color 0.2s; }
     .contact-value:hover { color: var(--accent); }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-    }
-
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
     .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
+    .footer-text { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
 
-    .footer-text {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* =============================================
-       ANIMATIONS
-    ============================================= */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* =============================================
-       RESPONSIVE
-    ============================================= */
+    /* RESPONSIVE */
     @media (max-width: 640px) {
       .nav-links { display: none; }
-      .project-card { grid-template-columns: 1fr; }
-      .project-arrow { display: none; }
+      .project-header { grid-template-columns: 1fr; }
+      .project-toggle { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ======= NAV ======= -->
+  <!-- NAV -->
   <nav>
     <div class="nav-inner">
       <span class="nav-logo">YL</span>
@@ -420,39 +219,28 @@
     </div>
   </nav>
 
-  <!-- ======= HERO ======= -->
+  <!-- HERO -->
   <section id="hero">
     <div class="container">
       <div class="hero-tag">Open to full-time roles · SF Bay Area</div>
-
-      <h1>
-        Yunyang Liu<br />
-        <em>Robotics Engineer</em>
-      </h1>
-
-      <!-- ↓ 改这里的自我介绍 -->
+      <h1>Yunyang Liu<br /><em>Robotics Engineer</em></h1>
       <p class="hero-desc">
         Senior at UC Santa Cruz (Robotics Engineering + EE minor), graduating Spring 2026.
         I design and build hardware — from 3D-printed mechanisms to embedded firmware.
         Focused on mechanical design, mechatronics, and robot systems.
       </p>
-
       <div class="hero-cta">
-        <!-- ↓ 把 # 换成你的简历 PDF 链接 -->
         <a class="btn btn-primary" href="Yunyang_Resume.pdf" download target="_blank">Download Resume ↓</a>
         <a class="btn btn-secondary" href="#projects">View Projects →</a>
       </div>
     </div>
   </section>
 
-  <!-- ======= SKILLS ======= -->
+  <!-- SKILLS -->
   <section id="skills">
     <div class="container">
       <p class="section-label">Skills</p>
-
-      <!-- ↓ 增删技能组和标签 -->
       <div class="skills-grid">
-
         <div class="skill-group">
           <p class="skill-group-title">CAD & Design</p>
           <div class="skill-tags">
@@ -461,7 +249,6 @@
             <span class="tag">Parametric CAD</span>
           </div>
         </div>
-
         <div class="skill-group">
           <p class="skill-group-title">Fabrication</p>
           <div class="skill-tags">
@@ -470,7 +257,6 @@
             <span class="tag">Laser Cutting</span>
           </div>
         </div>
-
         <div class="skill-group">
           <p class="skill-group-title">Embedded</p>
           <div class="skill-tags">
@@ -480,7 +266,6 @@
             <span class="tag">FreeRTOS</span>
           </div>
         </div>
-
         <div class="skill-group">
           <p class="skill-group-title">Protocols</p>
           <div class="skill-tags">
@@ -490,7 +275,6 @@
             <span class="tag">PWM</span>
           </div>
         </div>
-
         <div class="skill-group">
           <p class="skill-group-title">Languages</p>
           <div class="skill-tags">
@@ -500,7 +284,6 @@
             <span class="tag">MATLAB</span>
           </div>
         </div>
-
         <div class="skill-group">
           <p class="skill-group-title">Tools</p>
           <div class="skill-tags">
@@ -510,77 +293,173 @@
             <span class="tag">Git</span>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ======= PROJECTS ======= -->
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <p class="section-label">Projects</p>
-
       <div class="projects-list">
 
-        <!-- ↓ PROJECT 1 — 改这里 -->
+        <!-- PROJECT 1 — 7 DoF -->
         <div class="project-card fade-in">
-          <div>
-            <p class="project-num">01</p>
-            <h3 class="project-title">Assistive 7-DoF Robotic Manipulator for Remote Operation</h3>
-            <p class="project-desc">
-              Senior capstone project (ECE 129). Designed and assembled a 7-degree-of-freedom
-              robotic arm with joystick teleoperation. Owned full CAD design, 25+ FDM-printed
-              parts, and 4–5 design iterations from prototype to final build.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Onshape</span>
-              <span class="project-tag">FDM</span>
-              <span class="project-tag">Servo Control</span>
-              <span class="project-tag">Teleoperation</span>
+          <div class="project-header" onclick="toggleProject(this)">
+            <div>
+              <p class="project-num">01</p>
+              <h3 class="project-title">Assistive 7-DoF Robotic Manipulator for Remote Operation</h3>
+              <p class="project-desc">
+                Senior capstone project (ECE 129). Designed and assembled a 7-degree-of-freedom
+                robotic arm with joystick teleoperation. Owned full CAD design, 25+ FDM-printed
+                parts, and 5+ design iterations from prototype to final build.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Onshape</span>
+                <span class="project-tag">FDM</span>
+                <span class="project-tag">STM32</span>
+                <span class="project-tag">Servo Control</span>
+                <span class="project-tag">Teleoperation</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </div>
+          <div class="project-detail">
+            <div class="project-detail-inner">
+
+              <!-- ↓ 图片路径：Images/7 DoF/文件名 -->
+              <div class="project-gallery">
+                <img src="Images/7 DoF/Side_1.png" alt="7-DoF arm side view 1" />
+                <img src="Images/7 DoF/Side_2.png" alt="7-DoF arm side view 2" />
+                <img src="Images/7 DoF/Top.png" alt="7-DoF arm top view" />
+              </div>
+
+              <!-- ↓ 改数字 -->
+              <div class="project-stats">
+                <div class="stat">
+                  <span class="stat-value">7</span>
+                  <span class="stat-label">Degrees of Freedom</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">25+</span>
+                  <span class="stat-label">3D Printed Parts</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">35 kg·cm</span>
+                  <span class="stat-label">Max Torque</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">~40%</span>
+                  <span class="stat-label">Positioning Error Reduction</span>
+                </div>
+              </div>
+
+              <!-- ↓ 改技术细节 -->
+              <ul class="project-bullets">
+                <li>Spearheaded end-to-end CAD design in Onshape with parametric modeling, executing 5+ build–test–iterate cycles to optimize joint tolerances and inter-link alignment under high-torque conditions.</li>
+                <li>Engineered a 7-servo actuation system using STM32-based control and a regulated buck power architecture, systematically characterizing dead-band and pulse width response.</li>
+                <li>Reduced positioning error by ~30–50% and significantly improved motion stability and repeatability through iterative calibration.</li>
+                <li>Fabricated all structural components using FDM 3D printing (Bambu Lab P1S) — no laser cutting used in this project.</li>
+              </ul>
+
             </div>
           </div>
-          <!-- ↓ 把 # 换成项目链接（GitHub / 视频 / 报告） -->
-          <a class="project-arrow" href="#">↗</a>
         </div>
 
-        <!-- ↓ PROJECT 2 — 改这里 -->
+        <!-- PROJECT 2 — 4 DoF -->
         <div class="project-card fade-in">
-          <div>
-            <p class="project-num">02</p>
-            <h3 class="project-title">4-DOF Robotic Arm with Sensor-Based Hand Motion Control</h3>
-            <p class="project-desc">
-              3-DOF glove-based gesture-controlled robotic arm (ECE 167).
-              IMU data from the glove drives real-time servo actuation on the arm,
-              enabling intuitive hand-motion mirroring over a wired link.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">STM32</span>
-              <span class="project-tag">IMU</span>
-              <span class="project-tag">Servo</span>
-              <span class="project-tag">Gesture Control</span>
+          <div class="project-header" onclick="toggleProject(this)">
+            <div>
+              <p class="project-num">02</p>
+              <h3 class="project-title">4-DOF Robotic Arm with Sensor-Based Hand Motion Control</h3>
+              <p class="project-desc">
+                Glove-based gesture-controlled robotic arm (ECE 167). IMU, flex, and FSR sensors
+                drive real-time servo actuation, enabling intuitive hand-motion mirroring.
+                Achieved pick-and-place in under 30 seconds — 2× faster than requirement.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">STM32</span>
+                <span class="project-tag">IMU</span>
+                <span class="project-tag">Flex Sensor</span>
+                <span class="project-tag">PWM</span>
+                <span class="project-tag">Onshape</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </div>
+          <div class="project-detail">
+            <div class="project-detail-inner">
+
+              <!-- ↓ 上传图片到 Images/4 DoF/，改文件名 -->
+              <div class="project-gallery">
+                <img src="Images/4 DoF/photo1.png" alt="4-DOF arm photo 1" />
+                <img src="Images/4 DoF/photo2.png" alt="4-DOF arm photo 2" />
+              </div>
+
+              <div class="project-stats">
+                <div class="stat">
+                  <span class="stat-value">4</span>
+                  <span class="stat-label">Degrees of Freedom</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">&lt;30s</span>
+                  <span class="stat-label">Pick-and-Place Time</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">2×</span>
+                  <span class="stat-label">Faster than Requirement</span>
+                </div>
+              </div>
+
+              <ul class="project-bullets">
+                <li>Integrated IMU, flex, and FSR sensors on STM32F411RE to drive a 4-DOF system via PWM, achieving reliable real-time sensor-to-actuation control.</li>
+                <li>Designed and fabricated mechanical components using parametric CAD (Onshape) and FDM 3D printing, executing multiple design iterations to resolve assembly constraints and servo clearance.</li>
+                <li>Engineered a power distribution system with dual buck converters and per-servo decoupling, eliminating voltage drop under high-load conditions (&gt;6A stall current).</li>
+              </ul>
+
             </div>
           </div>
-          <a class="project-arrow" href="#">↗</a>
         </div>
 
-        <!-- ↓ PROJECT 3 — 改这里 -->
+        <!-- PROJECT 3 — Dispenser -->
         <div class="project-card fade-in">
-          <div>
-            <p class="project-num">03</p>
-            <h3 class="project-title">Event-Driven Card Dispensing System using HSM and ES Framework</h3>
-            <p class="project-desc">
-              Closed-loop card dispensing robot (ECE 118). Self-fabricated chassis with
-              laser-cut panels. Ultrasonic sensing for card detection, closed-loop DC motor
-              control, and servo actuation for card ejection.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Closed-loop Control</span>
-              <span class="project-tag">Ultrasonic</span>
-              <span class="project-tag">Laser Cutting</span>
-              <span class="project-tag">PIC32</span>
+          <div class="project-header" onclick="toggleProject(this)">
+            <div>
+              <p class="project-num">03</p>
+              <h3 class="project-title">Event-Driven Card Dispensing System using HSM and ES Framework</h3>
+              <p class="project-desc">
+                Closed-loop card dispensing robot (ECE 118). Self-fabricated chassis combining
+                FDM printing and laser cutting. Hierarchical state machine coordinates servo scanning,
+                player detection, and automated multi-player card dispensing.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">PIC32</span>
+                <span class="project-tag">HSM / FSM</span>
+                <span class="project-tag">Ultrasonic</span>
+                <span class="project-tag">Laser Cutting</span>
+                <span class="project-tag">L298 H-bridge</span>
+              </div>
+            </div>
+            <div class="project-toggle">+</div>
+          </div>
+          <div class="project-detail">
+            <div class="project-detail-inner">
+
+              <!-- ↓ 上传图片到 Images/Dispenser/，改文件名 -->
+              <div class="project-gallery">
+                <img src="Images/Dispenser/photo1.png" alt="Card dispenser photo 1" />
+                <img src="Images/Dispenser/photo2.png" alt="Card dispenser photo 2" />
+              </div>
+
+              <ul class="project-bullets">
+                <li>Architected a hierarchical state machine (HSM) in C using the ES Framework to coordinate servo scanning, player detection, and automated multi-player card dispensing.</li>
+                <li>Integrated ultrasonic sensing, servo positioning, and DC motor control (L298 H-bridge) on a custom soldered perfboard, ensuring reliable cross-component synchronization.</li>
+                <li>Diagnosed and resolved multi-card dispensing failures through mechanical and control optimizations — friction guides and reverse motor logic — achieving consistent single-card output.</li>
+                <li>Designed and fabricated chassis using Onshape CAD, combining FDM 3D printing and laser cutting with kerf compensation for precise assembly.</li>
+              </ul>
+
             </div>
           </div>
-          <a class="project-arrow" href="#">↗</a>
         </div>
 
         <!-- ↓ 复制上面的 project-card 块来添加新项目 -->
@@ -589,14 +468,11 @@
     </div>
   </section>
 
-  <!-- ======= ABOUT ======= -->
+  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <p class="section-label">About</p>
-
       <div class="about-grid">
-
-        <!-- ↓ 改个人介绍 -->
         <div class="about-text">
           <p>
             I'm a robotics engineering student at UC Santa Cruz, graduating Spring 2026.
@@ -612,8 +488,6 @@
             where I can contribute to physical products. ITAR eligible (US permanent resident).
           </p>
         </div>
-
-        <!-- ↓ 改联系方式 -->
         <ul class="contact-list">
           <li class="contact-item">
             <span class="contact-label">Email</span>
@@ -631,24 +505,25 @@
             <span class="contact-label">Location</span>
             <span class="contact-value">San Francisco, CA</span>
           </li>
-          <!-- ↓ 加更多联系方式：复制上面的 li 块 -->
         </ul>
-
       </div>
     </div>
   </section>
 
-  <!-- ======= FOOTER ======= -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <span class="footer-text">Yunyang Liu · 2026</span>
-      <!-- ↓ 改成你的实际 URL -->
-      <span class="footer-text">yunyang-liu.github.io</span>
+      <span class="footer-text">Yunyang599.github.io</span>
     </div>
   </footer>
 
-  <!-- ======= JS: scroll fade-in ======= -->
   <script>
+    function toggleProject(header) {
+      const card = header.parentElement;
+      card.classList.toggle('open');
+    }
+
     const observer = new IntersectionObserver(
       (entries) => entries.forEach(e => {
         if (e.isIntersecting) e.target.classList.add('visible');
