@@ -293,38 +293,35 @@
           <h3>Mechanical Design</h3>
           <!-- ↓ 改细节描述 -->
           <ul class="bullet-list">
-            <li>Parametric CAD in Onshape — all joints designed for tolerance stack-up under 35 kg·cm load.</li>
-            <li>25+ FDM-printed parts fabricated on Bambu Lab P1S; no laser cutting used.</li>
-            <li>5+ build–test–iterate cycles to resolve inter-link alignment and servo clearance issues.</li>
-            <li>Base designed as a 5-leg star pattern for stability during high-torque operation.</li>
+            <li>Designed all parametric CAD joints in Onshape, optimizing tolerance stack-up for 35 kg·cm load</li>
+            <li>Fabricated 25+ FDM parts using Bambu Lab P1S, iterating on fit and structural integrity</li>
+            <li>Executed 5+ build–test cycles to resolve inter-link alignment and servo clearance issues</li>
+            <li>Designed a 5-leg base for improved stability under high-torque operation</li>
           </ul>
         </div>
 
         <div class="detail-block">
           <h3>Embedded Control</h3>
           <ul class="bullet-list">
-            <li>STM32-based servo control with PWM signal generation for all 7 joints.</li>
-            <li>Regulated buck power architecture to maintain stable voltage under full servo load.</li>
-            <li>Systematically characterized dead-band and pulse-width response per servo to reduce positioning error by ~30–50%.</li>
-            <li>Joystick teleoperation interface for real-time manual control of each joint.</li>
+            <li>Implemented STM32-based PWM control for 7 servo joints</li>
+            <li>Designed buck converter-based power system to maintain voltage stability under load</li>
           </ul>
         </div>
 
         <div class="detail-block">
           <h3>Challenges & Solutions</h3>
           <ul class="bullet-list">
-            <li>Voltage sag under simultaneous multi-servo load — resolved with per-rail decoupling capacitors and regulated buck converter.</li>
-            <li>Joint backlash at high torque — addressed through tighter tolerance iteration in CAD and printed test fits.</li>
-            <li>Cable routing interference — redesigned link geometry to create internal cable channels.</li>
+            <li>Reduced joint backlash through iterative tolerance refinement in CAD and test prints</li>
+            <li>Eliminated cable interference by redesigning link geometry with internal routing channels</li>
           </ul>
         </div>
 
         <div class="detail-block">
           <h3>My Role</h3>
           <ul class="bullet-list">
-            <li>Mechanical Lead — owned all CAD design and fabrication decisions.</li>
-            <li>Drove design review cycles and coordinated build schedule with team.</li>
-            <li>Contributed to servo calibration and embedded control testing.</li>
+            <li>Mechanical Lead — owned all CAD design and fabrication decisions</li>
+            <li>Led design iterations and coordinated build schedule with team</li>
+            <li>Contributed to embedded control integration and servo calibration</li>
           </ul>
         </div>
 
