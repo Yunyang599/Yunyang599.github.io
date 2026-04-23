@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card Dispenser — Yunyang Liu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f11;
+      --surface: #16181c;
+      --border: #2a2d33;
+      --accent: #c8f040;
+      --text-primary: #eeecea;
+      --text-secondary: #8a8d94;
+      --text-muted: #4e5158;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --radius: 10px;
+      --max-w: 900px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(14, 15, 17, 0.88);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 2rem;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: 0.04em; }
+    .nav-back {
+      font-size: 13px; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-primary); }
+
+    /* HEADER */
+    .project-header { padding: 5rem 0 3rem; border-bottom: 1px solid var(--border); }
+    .project-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+    .project-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; }
+    .project-course {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--accent); padding: 2px 10px;
+      border: 1px solid rgba(200,240,64,0.3); border-radius: 99px;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300; line-height: 1.2;
+      letter-spacing: -0.02em; margin-bottom: 1.2rem;
+    }
+    .project-summary { font-size: 1rem; color: var(--text-secondary); max-width: 640px; line-height: 1.8; margin-bottom: 2rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-family: var(--font-mono); font-size: 11px; padding: 3px 10px;
+      border-radius: 4px; background: rgba(255,255,255,0.05);
+      color: var(--text-secondary); border: 1px solid var(--border);
+    }
+
+    /* STATS */
+    .stats-section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+    .stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem;
+    }
+    .stat-value { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 500; color: var(--accent); display: block; margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--text-muted); display: block; }
+
+    /* BUILD PROCESS GALLERY */
+    .gallery-section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.12em; color: var(--accent);
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .build-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .build-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: #12141a;
+      cursor: zoom-in;
+      transition: border-color 0.2s;
+    }
+    .build-item img:hover { border-color: var(--accent); }
+    .build-caption {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .build-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* DETAILS */
+    .details-section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    @media (max-width: 640px) { .details-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .detail-block h3 { font-size: 13px; font-weight: 500; margin-bottom: 1rem; color: var(--text-primary); }
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li {
+      font-size: 0.88rem; color: var(--text-secondary);
+      line-height: 1.7; padding-left: 1.2rem; position: relative;
+    }
+    .bullet-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; top: 2px; }
+
+    /* FOOTER NAV */
+    .page-footer { padding: 3rem 0; }
+    .footer-nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-link { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .footer-link:hover { color: var(--accent); }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+    .lightbox-close {
+      position: fixed; top: 1.5rem; right: 1.5rem;
+      font-size: 1.5rem; color: var(--text-secondary); cursor: pointer;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 8px; background: var(--surface);
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--text-primary); }
+
+    @media (max-width: 640px) { .project-header { padding: 3rem 0 2rem; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">YL</a>
+      <a class="nav-back" href="index.html">← Back to projects</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="project-header">
+    <div class="container">
+      <div class="project-meta">
+        <span class="project-num">PROJECT 03</span>
+        <span class="project-course">ECE 118 · Mechatronics</span>
+      </div>
+      <h1>Event-Driven Card Dispensing System using HSM and ES Framework</h1>
+      <p class="project-summary">
+        Designed and built a closed-loop card dispensing robot with a self-fabricated chassis
+        combining FDM printing and laser cutting. A hierarchical state machine coordinates
+        servo scanning, player detection, and automated multi-player card dispensing.
+      </p>
+      <div class="project-tags">
+        <span class="tag">PIC32</span>
+        <span class="tag">HSM / FSM</span>
+        <span class="tag">C</span>
+        <span class="tag">Ultrasonic Sensing</span>
+        <span class="tag">DC Motor Control</span>
+        <span class="tag">L298 H-bridge</span>
+        <span class="tag">Servo</span>
+        <span class="tag">Laser Cutting</span>
+        <span class="tag">3D Printing</span>
+        <span class="tag">Onshape</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-value">HSM</span>
+          <span class="stat-label">Hierarchical State Machine</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">3</span>
+          <span class="stat-label">Sensor Types</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">Custom</span>
+          <span class="stat-label">Perfboard Assembly</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">1 Card</span>
+          <span class="stat-label">Consistent Single Output</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILD PROCESS -->
+  <div class="gallery-section">
+    <div class="container">
+      <p class="section-label">Build Process</p>
+      <div class="build-grid">
+
+        <!-- Row 1: Image1 - Image4 -->
+        <div class="build-item">
+          <img src="Images/Dispenser/Image1.png" alt="Designing space for servo" onclick="openLightbox(this)" />
+          <span class="build-caption">Designing the space to fit in the servo</span>
+        </div>
+        <div class="build-item">
+          <img src="Images/Dispenser/Image2.png" alt="Testing mechanical parts" onclick="openLightbox(this)" />
+          <span class="build-caption">Testing if mechanical parts fit</span>
+        </div>
+        <div class="build-item">
+          <img src="Images/Dispenser/Image3.png" alt="Keep testing" onclick="openLightbox(this)" />
+          <span class="build-caption">Keep testing</span>
+        </div>
+        <div class="build-item">
+          <img src="Images/Dispenser/Image4.png" alt="Added the stands" onclick="openLightbox(this)" />
+          <span class="build-caption">Added the stands</span>
+        </div>
+
+        <!-- Row 2: Image5 - Image8 -->
+        <div class="build-item">
+          <img src="Images/Dispenser/Image5.png" alt="Connecting H-Bridge and wires" onclick="openLightbox(this)" />
+          <span class="build-caption">Connecting H-Bridge and wires</span>
+        </div>
+        <div class="build-item">
+          <img src="Images/Dispenser/Image6.png" alt="Organizing the wires" onclick="openLightbox(this)" />
+          <span class="build-caption">Organizing the wires</span>
+        </div>
+        <div class="build-item">
+          <img src="Images/Dispenser/Image7.png" alt="Stabilizing the green solder board" onclick="openLightbox(this)" />
+          <span class="build-caption">Stabilizing the green solder board</span>
+        </div>
+        <div class="build-item">
+          <img src="Images/Dispenser/Image8.png" alt="Put everything together" onclick="openLightbox(this)" />
+          <span class="build-caption">Put everything together</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="details-section">
+    <div class="container">
+      <p class="section-label">Technical Details</p>
+      <div class="details-grid">
+
+        <div class="detail-block">
+          <h3>Embedded Control</h3>
+          <ul class="bullet-list">
+            <li>Architected a hierarchical state machine (HSM) in C using the ES Framework to coordinate servo scanning, player detection, and automated card dispensing.</li>
+            <li>Integrated ultrasonic sensing, servo positioning, and DC motor control (L298 H-bridge) into a cohesive embedded system on a custom soldered perfboard.</li>
+            <li>Interrupt-driven state transitions for reliable real-time cross-component synchronization.</li>
+          </ul>
+        </div>
+
+        <div class="detail-block">
+          <h3>Mechanical Design & Fabrication</h3>
+          <ul class="bullet-list">
+            <li>Designed full chassis in Onshape using parametric CAD, combining FDM 3D printing and laser cutting.</li>
+            <li>Applied kerf compensation to laser-cut panels for precise press-fit assembly.</li>
+            <li>Iterated on servo mount geometry to ensure consistent card alignment and reliable ejection.</li>
+          </ul>
+        </div>
+
+        <div class="detail-block">
+          <h3>Challenges & Solutions</h3>
+          <ul class="bullet-list">
+            <li>Multi-card dispensing failures — resolved through friction guide redesign and reverse motor logic to achieve consistent single-card output.</li>
+            <li>Wire management with multiple subsystems — addressed with structured perfboard layout and cable ties.</li>
+            <li>Ultrasonic detection false positives — tuned detection threshold and added debounce logic in firmware.</li>
+          </ul>
+        </div>
+
+        <div class="detail-block">
+          <h3>My Role</h3>
+          <ul class="bullet-list">
+            <li>Led mechanical design and fabrication — chassis, servo mounts, and card ejection mechanism.</li>
+            <li>Contributed to HSM firmware architecture and sensor integration.</li>
+            <li>Diagnosed and resolved multi-card dispensing failures through combined mechanical and control fixes.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER NAV -->
+  <div class="page-footer">
+    <div class="container">
+      <div class="footer-nav">
+        <a class="footer-link" href="project2.html">← Project 02: 4-DOF Gesture Arm</a>
+        <a class="footer-link" href="index.html">Back to All Projects →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script>
+    function openLightbox(img) {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
